@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LARP Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="18,2 34,10 34,26 18,34 2,26 2,10" stroke="#c9a84c" stroke-width="1.5" fill="none"/>
+          <polygon points="18,8 28,13 28,23 18,28 8,23 8,13" stroke="#c9a84c" stroke-width="1" fill="none" opacity="0.5"/>
+          <circle cx="18" cy="18" r="4" fill="#c9a84c"/>
+        </svg>
+        <span>LARP Games</span>
+      </div>
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search games…" autocomplete="off" />
+        <button class="clear-btn" id="clearSearch" aria-label="Clear search">✕</button>
+      </div>
+      <div class="filter-tabs">
+        <button class="tab active" data-filter="all">All Games</button>
+        <button class="tab" data-filter="favorites">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Favorites
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Your Game Realm</h1>
+      <p>All your HTML adventures, one place.</p>
+    </div>
+
+    <div class="container">
+      <div id="emptyState" class="empty-state" style="display:none">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="12" width="48" height="40" rx="3" stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.4"/>
+          <path d="M20 12V8a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v4" stroke="#c9a84c" stroke-width="2" opacity="0.4"/>
+          <circle cx="32" cy="34" r="8" stroke="#c9a84c" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <path d="M29 34l2 2 4-4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+        </svg>
+        <h2 id="emptyTitle">No games found</h2>
+        <p id="emptyMsg">Drop your HTML games into the <code>games/</code> folder, then refresh.</p>
+      </div>
+      <div id="gamesGrid" class="games-grid"></div>
+    </div>
+  </main>
+
+  <div id="gameModal" class="modal" style="display:none">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <span id="modalTitle" class="modal-title"></span>
+        <div class="modal-actions">
+          <button id="modalFavBtn" class="icon-btn" title="Toggle favorite">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </button>
+          <button id="modalFullscreen" class="icon-btn" title="Fullscreen">
+            <svg id="fsIconExpand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <svg id="fsIconCollapse" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>
+          </button>
+          <button id="modalClose" class="icon-btn" title="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <iframe id="gameFrame" title="Game"></iframe>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
